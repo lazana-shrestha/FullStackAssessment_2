@@ -1,0 +1,24 @@
+# Allow access to this directory
+Options +Indexes +FollowSymLinks
+Require all granted
+
+# Enable PHP processing
+<IfModule mod_php.c>
+    php_flag display_errors On
+    php_value error_reporting E_ALL
+</IfModule>
+
+# Directory index files
+DirectoryIndex index.php index.html
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Optional: Remove .php extension from URLs
+# Uncomment these lines if you want cleaner URLs
+# RewriteEngine On
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^([^\.]+)$ $1.php [NC,L]
